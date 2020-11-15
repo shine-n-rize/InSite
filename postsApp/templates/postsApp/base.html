@@ -1,0 +1,189 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'postsApp/css/style.css' %}">
+
+    {% if title %}
+        <title>{{ user }}'s Gallery</title>
+    {% else %}
+        <title>InSite</title>
+    {% endif %}
+
+    <style>
+        .myContent {
+            min-height: 800px;
+            background-image: url('{% static "postsApp/img/bg.jpg" %}');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: top;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand mr-4" href="#">InSite</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="#">Home</a>
+                        <a class="nav-item nav-link" href="#">About</a>
+                    </div>
+                    <!-- Navbar Right Side -->
+                    <div class="nav-bar">
+                        <a class="nav-item nav-link" href="{% url 'new' %}">Add Post</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 myProfile">
+                <div class="content-section">
+
+                    <div class="media">
+                        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"><br>
+                        <div class="media-body">
+                            <h2 class="account-heading">{{ user.username }}</h2>
+                            <p class="text-secondary">{{ user.email }}</p>
+                        </div>
+                    </div>
+            
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
+                            {{ u_form|crispy }}
+                            {{ p_form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Update</button>
+                        </div>
+                    </form>
+            
+                </div>
+                
+                <!-- <img src="{% static 'postsApp/img/dummy.png' %}" class="profile_pic" alt="User's Profile Picture" width="50%">
+                <h4 class="text-center">Username</h4> -->
+                <!-- <div class="btn-group" role="group" aria-label="Basic example">
+                    <span class="badge badge-primary">Primary</span>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div> -->
+                
+                <!-- <hr>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
+                    </div>
+                    <input type="text" class="form-control" id="username" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Username">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                    </div>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter email">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">First Name</span>
+                    </div>
+                    <input type="text" class="form-control" id="firstname" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="First Name">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Last Name</span>
+                    </div>
+                    <input type="text" class="form-control" id="lastname" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Last Name">
+                </div>
+
+                <hr>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Branch</span>
+                    </div>
+                    <input type="text" class="form-control" id="branch" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="e.g. CSE">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Degree</span>
+                    </div>
+                    <input type="text" class="form-control" id="degree" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="BTech/IDD/MTech">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Year of Joining</span>
+                    </div>
+                    <input type="text" class="form-control" id="year_of_joining" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="e.g. 2019">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Date of Birth</span>
+                    </div>
+                    <input type="text" class="form-control" id="dob" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="dd/mm/yyyy">
+                </div>
+
+                <div class="form-group text-right">
+                    <button class="btn btn-outline-info" type="submit">Update</button>
+                </div> -->
+
+                <!-- <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Degree</span>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Select</option>
+                        <option value="1">BTech</option>
+                        <option value="2">MTech</option>
+                        <option value="3">IDD</option>
+                    </select>
+                </div> -->
+            </div>
+            <div class="col-md-9 myContent">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

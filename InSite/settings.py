@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'usersApp',
+    'postsApp',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +60,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'InSite/templates'),
+            os.path.join(BASE_DIR, 'usersApp/templates'),
+            os.path.join(BASE_DIR, 'postsApp/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -126,7 +131,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = [
+    os.path.join(BASE_DIR, 'usersApp/static'),
+    os.path.join(BASE_DIR, 'postsApp/static'),
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
