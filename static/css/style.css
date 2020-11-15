@@ -51,7 +51,7 @@ padding-top: 0;
 
 .slider-area {clear: both}
 .slider-area, .promo-area, .brands-area, .maincontent-area, .footer-top-area, .product-widget-area, .product-breadcroumb-area, .single-product-area {position: relative;overflow: hidden}
-.zigzag-bottom {}
+/* .zigzag-bottom {} */
 .slide-text-wrapper {
   height: 700px;
 }
@@ -230,7 +230,7 @@ z-index: 9;
 .single-product {
   overflow: hidden;
 }
-.single-product:hover {}
+/* .single-product:hover {} */
 .single-product:hover .product-hover a.add-to-cart-link {top: 32%;}
 .single-product:hover .product-hover a.view-details-link {bottom: 32%;}
 .single-product:hover .product-hover:after{left: 0}
@@ -754,8 +754,7 @@ div.cart-collaterals ul.products li.product {
 .cart_totals table th {
     background: none repeat scroll 0 0 #f4f4f4;
 }
-.onsale {
-}
+/* .onsale {} */
 div.cart-collaterals ul.products li.product .onsale {
     background: none repeat scroll 0 0 #1abc9c;
     color: #fff;
@@ -774,8 +773,7 @@ div.cart-collaterals ul.products li.product .price {
     margin-bottom: 10px;
     overflow: hidden;
 }
-.price > ins {
-}
+/* .price > ins {} */
 div.cart-collaterals ul.products li.product .price ins {
     color: #1abc9c;
     font-weight: 700;
@@ -904,7 +902,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 .readmore:visited 
 {
     text-decoration: none; 
-    decoration: none; 
+    /* decoration: none;  */
 }
 
 .details{

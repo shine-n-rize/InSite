@@ -47,12 +47,20 @@
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li><a href="shop.html">Profile</a></li>
+                            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="#">Search</a></li>
                             <li><a href="#">About</a></li>
+                            <li><a href="#">Contact Us</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Logout</a></li>
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'profile' %}">Profile</a></li>
+                                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
+                                <li><a href="{% url 'login' %}">Login</a></li>
+                                <li><a href="{% url 'register' %}">Register</a></li>
+                            {% endif %}
                         </ul>
                     </div>  
                 </div>
@@ -151,11 +159,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="brand-wrapper">
-                        <h2 class="section-title">Search Profile</h2>
+                        <h2 class="section-title">Explore Profiles</h2>
                         <div class="search">
                             <form action="#"> 
                                 <input type="text" id="searchTerm"
-                                    placeholder=" Search Profile"
+                                    placeholder=" Search by Username"
                                     name="search"> 
                                 <button class="searchButton"> 
                                     <i class="fa fa-search"> 
@@ -248,25 +256,25 @@
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
-                <h2 class="section-title">Filters</h2>
+                <h2 class="section-title">Club Activities</h2>
                 <div class="col-md-3 col-sm-6">
                     <div class="single-promo">
-                        <p>Fine Arts</p>
+                        <p>Fine Arts Club</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="single-promo">
-                    <p>Photography</p>
+                    <p>Photography Club</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="single-promo">
-                        <p>Dance</p>
+                        <p>Dance Club</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="single-promo">
-                        <p>Club of Programmers</p>
+                        <p>Design Club</p>
                     </div>
                 </div>
             </div>
@@ -317,7 +325,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2020 Insite IIT BHU. All Rights Reserved. Coded with <i class="fa fa-heart"></i></p>
+                        <p>&copy; 2020 InSite - IIT BHU. All Rights Reserved. Coded with <i class="fa fa-heart"></i></p>
                     </div>
                 </div>
             </div>
