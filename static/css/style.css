@@ -145,12 +145,17 @@ z-index: 9;
     font-weight: 200;
     padding: 20px 10px;
     text-align: center;
+    margin-top:20px;
 }
 .single-promo i {
   font-size: 50px;
 }
 
 .single-promo:hover {color: #fff;background: #222;border-color: #222}
+.highlight{
+  color: #fff;background: #222;border-color: #222
+}
+
 
 .section-title {
   font-family: "Raleway",sans-serif;

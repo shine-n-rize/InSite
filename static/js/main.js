@@ -83,8 +83,10 @@ jQuery(document).ready(function($){
     $('body').scrollspy({ 
         target: '.navbar-collapse',
         offset: 95
-    })  
+    }) 
+
+    $('.single-promo').on("click", function(){
+        $(this).toggleClass('highlight');
+    }) 
 });
-
-
 
