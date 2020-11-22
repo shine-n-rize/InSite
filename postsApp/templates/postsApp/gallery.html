@@ -1,0 +1,16 @@
+{% extends "postsApp/base.html" %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ post.user }}</a>
+                    <small class="text-muted">{{ post.date_posted }}</small>
+                </div>
+                <h2 class="article-title">{{ post.title }}</h2>
+                <p class="article-content">{{ post.description }}</p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
