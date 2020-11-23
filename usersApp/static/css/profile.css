@@ -1,0 +1,42 @@
+.split{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+.split.left{
+    left: 0;
+}
+.split.right{
+    right:0;
+}
+.image-cropper {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    align-self: center;
+    left: 25%;
+    margin-top: 50px;
+}
+.profile-pic {
+  display: inline;
+  margin: 0 auto;
+  margin-left: -25%; 
+  margin-right: -25%;
+  height: 100%;
+  width: auto;
+}
+
+ h1 {
+    color: #1abc9c;
+    font: 40px Helvetica, Arial, sans-serif;
+    letter-spacing: 1px;
+    line-height: 20px;
+    margin: 40px 0 30px;
+    text-align: center;
+}
+
+#content{
+    width: 600px;
+}

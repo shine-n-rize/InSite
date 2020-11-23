@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
-
 def home(request):
     return render(request, 'usersApp/home.html')
 
@@ -16,7 +15,8 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!<br>You are eligible for Login.')
+            messages.success(
+                request, f'Account created for {username}!<br>You are eligible for Login.')
             return redirect('login')
     else:
         form = UserRegisterForm()
@@ -27,7 +27,8 @@ def register(request):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        p_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
@@ -44,3 +45,7 @@ def profile(request):
 
     return render(request, 'usersApp/profile.html', context)
 
+
+def get_user_profile(request, username):
+    user = Users.objects.get(username=username)
+    return render(request, 'usersApp/profile1.html', {"user": user})
