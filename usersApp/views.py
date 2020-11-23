@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from postsApp.models import Post
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
@@ -40,12 +40,8 @@ def profile(request):
 
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'posts': Post.objects.all().filter(user=request.user)
     }
 
     return render(request, 'usersApp/profile.html', context)
-
-
-def get_user_profile(request, username):
-    user = Users.objects.get(username=username)
-    return render(request, 'usersApp/profile1.html', {"user": user})
