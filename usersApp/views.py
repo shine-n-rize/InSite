@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.views.generic import DetailView
 
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import (
+    UserRegisterForm, 
+    UserUpdateForm, 
+    ProfileUpdateForm
+)
+from .models import Profile
 
 
 
@@ -44,3 +51,14 @@ def profile(request):
 
     return render(request, 'usersApp/profile.html', context)
 
+
+def search(request):
+    qur = request.GET.get('search').lower()
+    # profiles = Profile.objects.filter(user__icontains = qur)
+    profiles = [item for item in Profile.objects.all() if qur in item.user.username.lower()]
+    return render(request, 'usersApp/search.html', {'profiles': profiles})
+
+
+class ProfileDetailView(DetailView):
+    model = Profile
+    template_name = 'usersApp/search_profile.html'

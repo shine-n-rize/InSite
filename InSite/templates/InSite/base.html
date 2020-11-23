@@ -16,10 +16,10 @@
     <div class="container">
         {% if messages %}
             {% for message in messages %}
-            {% endfor %}
-                <div class="alert alert-{{ messages.tags }}">
-                    {{ message }}
-                </div>
+            <div class="alert alert-{{ messages.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}                
             {% endif %}
         {% block content %}
         {% endblock %}

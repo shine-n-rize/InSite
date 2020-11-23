@@ -1,0 +1,23 @@
+{% extends "InSite/base.html" %}
+{% load static %}
+
+
+{% block content %}
+{% if profiles %}
+    <legend class="border-bottom mt-4 mb-4"><h1>Search Results</h1></legend>
+    <div class="container">
+        {% for profile in profiles %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata mb-4">
+                    <img class="rounded-circle" src="{{ profile.image.url }}" alt="user profile pic" height="50px">
+                    <a class="mr-2" href="{% url 'search-profile' profile.id %}">{{ profile.user }}</a>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    {% else %}
+        <h1>No profile found!!!</h1>
+    {% endif %}
+    </div>
+{% endblock %}
