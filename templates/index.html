@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -273,6 +274,7 @@
                 <header class="section-title footer-head">Questions or Comments?</header>
                 <h2 class="footer-head2">Contact Us</h2>
                 <form method="POST">
+                    {% csrf_token %}
                     <input type="hidden" name="csrfmiddlewaretoken" value="botm43h4RyJeVIONvVAmQr500SDnugQ5m3N5RgpG1fuzjMbwMQO2xTrBQ87fA7uy">
                     <div class="row">
                         <div class="col-md-6 ">
