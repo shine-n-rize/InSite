@@ -1,16 +1,25 @@
 {% extends "postsApp/base.html" %}
+{% load crispy_forms_tags %}
+
 
 {% block content %}
     {% for post in posts %}
+        {% if request.user == post.user %}
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ post.user }}</a>
+                    {% if object.user == user %}
+                        <a class="mr-2" href="#">{{ post.user }}</a>
+                    {% endif %}
                     <small class="text-muted">{{ post.date_posted }}</small>
                 </div>
-                <h2 class="article-title">{{ post.title }}</h2>
+                {% if post.post_image %}
+                <img src="{{ post.post_image.url }}" alt="new post" height="100px">
+                {% endif %}
+                <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
                 <p class="article-content">{{ post.description }}</p>
             </div>
         </article>
+        {% endif %}
     {% endfor %}
-{% endblock content %}
+{% endblock %}

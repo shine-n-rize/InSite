@@ -305,7 +305,7 @@ z-index: 9;
     color: #222;
 }
 .single-wid-product h2 a:hover, .single-product h2 a:hover {
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 .wid-view-more {
     background: none repeat scroll 0 0 #1abc9c;
@@ -457,7 +457,7 @@ width: 10px;
   margin: 10px 0 0;
 }
 
-.product-big-title-area {background: url(img/crossword.png) repeat scroll 0 0 #1ABC9C}
+.product-big-title-area {background: url(img/crossword.png) repeat scroll 0 0 #1abc9c}
 
 .product-bit-title h2 {
   font-family: raleway;
@@ -852,9 +852,9 @@ table.shop_table td.product-remove a {
 
 table.shop_table td.product-remove a:hover {color: #fff;background: red;text-decoration: none}
 table.shop_table td.product-name a{color: #222;}
-table.shop_table td.product-name a:hover {color: #1ABC9C;text-decoration: none}
+table.shop_table td.product-name a:hover {color: #1abc9c;text-decoration: none}
 div.quantity input.plus:hover, div.quantity input.minus:hover {background-color: #222}
-div.cart-collaterals ul.products li.product a:hover h3 {color: #1ABC9C}
+div.cart-collaterals ul.products li.product a:hover h3 {color: #1abc9c}
 div.cart-collaterals ul.products li.product a:hover {text-decoration: none}
 
 div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background-color: #222}
@@ -932,14 +932,14 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
   }
   
   #searchTerm:focus{
-    color:  #1ABC9C;
+    color:  #1abc9c;
   }
   
   .searchButton {
     border:none;
     width: 40px;
     height: 36px;
-    background:  #1ABC9C;
+    background:  #1abc9c;
     text-align: center;
     color: white;
     border-radius: 0 5px 5px 0;

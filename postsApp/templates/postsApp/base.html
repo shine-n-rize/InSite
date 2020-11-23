@@ -55,26 +55,20 @@
                         <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
                         <a class="nav-item nav-link" href="#">About</a>
                     </div>
-                    <!-- Navbar Right Side -->
-                    <!-- <div class="nav-bar">
-                        <a class="nav-item nav-link" href="{% url 'new' %}">Add Post</a>
-                    </div> -->
                 </div>
             </div>
         </nav>
     </header>
 
     <main role="main" class="container-fluid">
-        <div class="row">
-            <div class="col-md-4 myProfile">
-                <div class="content-section">
-                    Add post here
-                </div>
-            </div>
-            <div class="col-md-8 myContent">
+        <!-- <div class="row"> -->
+            <!-- <div class="col-md-4 myProfile">
+                {% block add_post %}{% endblock %}
+            </div> -->
+            <div class="container myContent">
                 {% block content %}{% endblock %}
             </div>
-        </div>
+        <!-- </div> -->
     </main>
 
 
