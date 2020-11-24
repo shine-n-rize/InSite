@@ -2,12 +2,12 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}?version=2" type="text/css">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}?version=1" type="text/css">
 {% endblock %}
 
 {% block content %}
 
-        <div class="row">
+        <div class="row profile-row">
 
             <div class="col-md-5 text-center myMainInfo">
                 <div>
@@ -56,7 +56,7 @@
                                             {% endif %}
                                             <h2 class="view"><a><div class="post-title">{{post.title}}</div></a><a href="#" id="details">{{post.user}}</a></h2>
                             </div>
-    
+                            
                             {% endfor %}
                         </div>
                     </div>
@@ -70,5 +70,9 @@
     image = container.find('img');
 
 container.width(image.height());
+$('.view').on('click', function(){
+    alert('Hello');
+    console.log('Heelo')
+});
         </script>
 {% endblock content %}

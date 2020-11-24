@@ -9,11 +9,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-    background: #082329;
+    background: #1abc9c;
 }
 
 .bg-steel {
-    background-color: #082329;
+    background-color: #1abc9c;
 }
 
 .site-header .navbar-nav .nav-link {

@@ -1,0 +1,22 @@
+{% extends "postsApp/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'postsApp/css/new_post.css' %}?version=1" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Add New Post</h1>
+            <fieldset class="form-group">
+                
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group submit text-center">
+                <button class="btn btn-outline-info mb-4" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

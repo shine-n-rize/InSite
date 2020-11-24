@@ -1,8 +1,17 @@
+from .models import Profile
+from .forms import (
+    UserRegisterForm,
+    UserUpdateForm,
+    ProfileUpdateForm
+)
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.views.generic import DetailView
 from postsApp.models import Post
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django import template
+register = template.Library()
 
 
 def home(request):
@@ -45,3 +54,32 @@ def profile(request):
     }
 
     return render(request, 'usersApp/profile.html', context)
+
+
+def search(request):
+    qur = request.GET.get('search').lower()
+    # profiles = Profile.objects.filter(user__icontains = qur)
+    profiles = [item for item in Profile.objects.all(
+    ) if qur in item.user.username.lower()]
+    return render(request, 'usersApp/search.html', {'profiles': profiles})
+
+
+class ProfileDetailView(DetailView):
+    model = Profile
+    template_name = 'usersApp/search_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        posts = Post.objects.all()
+        print('Hello')
+        context['posts'] = posts
+        return context
+
+    def in_category(posts, user):
+        return posts.filter(user=user)
+
+# @register.filter
+
+
+def index(request):
+    userID = request.GET['']

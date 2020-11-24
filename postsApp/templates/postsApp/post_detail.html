@@ -1,0 +1,22 @@
+{% extends "postsApp/base.html" %}
+{% load static %}
+
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                {% if object.user != user %}
+                    <a class="mr-2" href="#">{{ object.user }}</a>
+                {% endif %}
+                <small class="text-muted">{{ object.date_posted }}</small>
+                {% if object.user == user %}
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                {% endif %}
+            </div>
+            <img src="{{ object.post_image.url }}" alt="new post" height="100px">
+            <h2 class="article-title">{{ object.title }}</h2>
+            <p class="article-content">{{ object.description }}</p>
+        </div>
+    </article>
+{% endblock content %}

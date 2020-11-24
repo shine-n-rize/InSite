@@ -27,6 +27,7 @@ from postsApp import views as post_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
+    path('', include('usersApp.urls')),
     path('profile/', user_views.profile, name='profile'),
     path('', include('usersApp.urls')),
 
