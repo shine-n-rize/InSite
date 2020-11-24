@@ -181,7 +181,23 @@
         <div class="container">
             <div class="row">
                 <h2 class="section-title filters">Club Filters</h2>
-                <div class="col-md-3 col-sm-6">
+
+                <div id="clubs">
+                    <div class="col-md-3 col-sm-6 mx-auto">
+                        <div class="single-promo">
+                            <a href="/">All Posts</a>
+                        </div>
+                    </div>
+                    {% for club in clubs %}
+                    <div class="col-md-3 col-sm-6 mx-auto">
+                        <div class="single-promo">
+                            <a href="/?club={{ club.id }}">{{ club.name }}</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- <div class="col-md-3 col-sm-6">
                     <div class="single-promo">
                         <p>Fine Arts Club</p>
                     </div>
@@ -220,7 +236,7 @@
                     <div class="single-promo">
                         <p>Design</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div> 
