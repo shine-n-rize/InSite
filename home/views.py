@@ -2,22 +2,13 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from django.shortcuts import render
-from postsApp.models import Post, Club
+from postsApp.models import Post
 from django.core.mail import send_mail
 from .forms import contactformemail
 
 
 def home_view(request):
-    posts = None
-    clubs = Club.get_all_clubs()
-    clubID = request.GET.get('club')
-    if clubID:
-        posts = Post.get_all_posts_by_club_id(clubID)
-    else:
-        posts = Post.objects.all()
-    data = {}
-    data['posts'] = posts
-    data['clubs'] = clubs
+    posts = Post.objects.all()
     if request.method == "GET":
         form = contactformemail()
     else:
@@ -28,6 +19,4 @@ def home_view(request):
             message = form.cleaned_data['message']
             send_mail(subject, message, frommail, [
                       'swag.level.zero@gmail.com', frommail])
-    return render(request, 'index.html', data)
-
-# Create your views here.
+    return render(request, 'index.html', {'posts': posts, 'form': form})

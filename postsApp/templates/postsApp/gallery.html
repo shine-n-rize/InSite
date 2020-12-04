@@ -1,13 +1,11 @@
 {% extends "postsApp/base.html" %}
 {% load crispy_forms_tags %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'postsApp/css/new_post.css' %}?version=1" type="text/css">
-{% endblock %}
+
 
 {% block content %}
     {% for post in posts %}
         {% if request.user == post.user %}
-        <!--<article class="media content-section">
+        <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
                     {% if object.user == user %}
@@ -21,11 +19,7 @@
                 <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
                 <p class="article-content">{{ post.description }}</p>
             </div>
-        </article>-->
-        <div class="post-info">
-        <a href="{{post.post_image.url}}" class="venobox" data-gall="myGallery"><img src="{{post.post_image.url}}" alt=""></a>
-        <h2 class="view"><a><div class="post-title">{{post.title}}</div></a><a href="#" id="details">{{post.user}}</a><small class="text-muted">{{ post.date_posted }}</small></h2>
-        <p class="article-content">{{ post.description }}</p>
+        </article>
         {% endif %}
     {% endfor %}
 {% endblock %}
