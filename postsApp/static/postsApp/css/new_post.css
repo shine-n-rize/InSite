@@ -1,0 +1,43 @@
+body {
+    /*background: #DCDDDF url(https://cssdeck.com/uploads/media/items/7/7AF2Qzt.png);*/
+    background: url('../img/bg.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: #000;
+    font: 14px Arial;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+.myContent{
+    background-color: white;
+    margin-top: 150px;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 20px;
+    background-color:  rgb(237, 239, 241);
+}
+
+h1{
+    text-align: center;
+    font-family: 'Titillium Web';
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    padding-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    color:  rgb(92, 94, 95);
+    background-color: rgb(207, 208, 209);
+    padding-bottom: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.form-group{
+    padding-left: 20px;
+    padding-right: 50px;
+}
+.submit.btn{
+    margin-bottom: 20px;
+}
+

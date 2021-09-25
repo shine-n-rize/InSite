@@ -1,16 +1,17 @@
+from .models import Profile
+from .forms import (
+    UserRegisterForm,
+    UserUpdateForm,
+    ProfileUpdateForm
+)
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.views.generic import DetailView
-
-from .forms import (
-    UserRegisterForm, 
-    UserUpdateForm, 
-    ProfileUpdateForm
-)
-from .models import Profile
-
+from postsApp.models import Post
+from django import template
+register = template.Library()
 
 
 def home(request):
@@ -23,7 +24,8 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!<br>You are eligible for Login.')
+            messages.success(
+                request, f'Account created for {username}!<br>You are eligible for Login.')
             return redirect('login')
     else:
         form = UserRegisterForm()
@@ -34,7 +36,8 @@ def register(request):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        p_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
@@ -46,7 +49,8 @@ def profile(request):
 
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'posts': Post.objects.all().filter(user=request.user)
     }
 
     return render(request, 'usersApp/profile.html', context)
@@ -55,10 +59,27 @@ def profile(request):
 def search(request):
     qur = request.GET.get('search').lower()
     # profiles = Profile.objects.filter(user__icontains = qur)
-    profiles = [item for item in Profile.objects.all() if qur in item.user.username.lower()]
+    profiles = [item for item in Profile.objects.all(
+    ) if qur in item.user.username.lower()]
     return render(request, 'usersApp/search.html', {'profiles': profiles})
 
 
 class ProfileDetailView(DetailView):
     model = Profile
     template_name = 'usersApp/search_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        posts = Post.objects.all()
+        print('Hello')
+        context['posts'] = posts
+        return context
+
+    def in_category(posts, user):
+        return posts.filter(user=user)
+
+# @register.filter
+
+
+def index(request):
+    userID = request.GET['']

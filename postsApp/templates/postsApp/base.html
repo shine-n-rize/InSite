@@ -14,17 +14,19 @@
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'postsApp/css/style.css' %}">
-
+    {% block css %}
+    {% endblock %}
     {% if title %}
         <title>{{ user }}'s Gallery</title>
     {% else %}
         <title>InSite</title>
     {% endif %}
 
-    <style>
+    <!--<style>
         .myContent {
             min-height: 800px;
             background-image: url('{% static "postsApp/img/bg.jpg" %}');
@@ -36,14 +38,14 @@
             -o-background-size: cover;
             background-size: cover;
         }
-    </style>
+    </style>-->
 
 </head>
 
 
 <body>
 
-    <header class="site-header">
+    <!--<header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand mr-4" href="{% url 'home' %}">InSite</a>
@@ -58,7 +60,7 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header>-->
 
     <main role="main" class="container-fluid">
         <div class="container myContent">

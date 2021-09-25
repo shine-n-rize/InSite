@@ -1,8 +1,11 @@
-{% extends "postsApp/base.html" %}
-
+{% extends "usersApp/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}?version=1" type="text/css">
+{% endblock %}
 
 {% block content %}
-        <article class="media content-section">
+        <!--<article class="media content-section">
             <div class="media-body">
                 <img src="{{ profile.image.url }}" alt="user profile pic" height="200px">
                 <h3 class="article-title">{{ profile.user }}</h3>
@@ -11,5 +14,72 @@
                 <h6 class="article-title">Year of Joining: {{ profile.year_of_joining }}</h6>
                 <h6 class="article-title">DOB: {{ profile.dob }}</h6>
             </div>
-        </article>
+        </article>-->
+
+                <div class="row profile-row">
+
+            <div class="col-md-5 text-center myMainInfo">
+                <div>
+                    <div class="image-cropper text-center">
+                        <img class="rounded-circle account-img profile-pic" src="{{profile.image.url }}">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="account-heading">{{ profile.user }}</h2>
+                    </div>
+
+                    <div class="pl-lg-4">
+                        <div class="row" id="info-row">
+                          <div class="col-lg-6 info">
+                            <p>First Name : {{profile.user.first_name}}</p>
+                          </div>
+                          <div class="col-lg-6 info">
+                            <p>Last Name : {{ profile.user.last_name }}</p>
+                          </div>
+                          <div class="col-lg-6 info">
+                            <p>Branch : {{ profile.branch }}</p>
+                          </div>
+                          <div class="col-lg-6 info">
+                            <p>Degree : {{ profile.degree }}</p>
+                          </div>
+                          <div class="col-lg-6 info">
+                            <p>Year of joining : {{ profile.year_of_joining }}</p>
+                          </div>
+                          <div class="col-lg-6 info">
+                            <p>Date of Birth : {{ profile.dob }}</p>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <hr class="my-4">
+
+                </div>
+            </div>
+
+            <div class="col-md-7 myDetailedInfo">
+    
+                        <h1>Gallery</h1>
+                        <div class="row gallery-cont">
+                            {% for post in posts %}
+                           {% if post.user == profile.user %}
+                            <div class="col-md-6">
+                                {% if post.post_image %}<a href="{{post.post_image.url}}" class="venobox" data-gall="myGallery"><img src="{{post.post_image.url}}" alt=""></a>
+                                            {% elif post.video %}<a href="{{post.video.url}}" ><video src="{{post.video.url}}" type="video/mp4" controls></video></a>
+                                            {% else %}<a href="{% static 'images/default.jpg' %}" class="venobox" data-gall="myGallery"><img src="{% static 'images/default.jpg' %}" alt=""></a>
+                                            {% endif %}
+                                            <h2 class="view"><a><div class="post-title">{{post.title}}</div></a><a href="#" id="details">{{post.user}}</a></h2>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    
+                
+            </div>
+
+        </div>
+        <script>
+            var container = $('.image-cropper'),
+    image = container.find('img');
+
+container.width(image.height());
+        </script>
 {% endblock %}

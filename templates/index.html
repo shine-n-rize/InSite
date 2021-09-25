@@ -48,12 +48,12 @@
                             <li><a href="#media" class="scroll-link">Media</a></li>
                             
                             <li><a href="#contact" class="scroll-link">Contact Us</a></li>
-                            <li><a href="#">About</a></li>
+                            
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
                                 <li><a href="{% url 'profile' %}">Profile</a></li>
-                                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                                
                                 <li><a href="{% url 'post-add' %}">Add Post</a></li>
                                 <li><a href="{% url 'logout' %}">Logout</a></li>
                             {% else %}
@@ -177,7 +177,7 @@
                 </div>
             </div>
         </div>
-        <br>
+        <!--<br>
         <div class="container">
             <div class="row">
                 <h2 class="section-title filters">Club Filters</h2>
@@ -238,7 +238,7 @@
                     </div>
                 </div> -->
             </div>
-        </div>
+        </div>-->
     </div> 
 <!--end search and filters-->
 

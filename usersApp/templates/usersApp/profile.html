@@ -1,40 +1,78 @@
-{% extends "InSite/base.html" %}
+{% extends "usersApp/base.html" %}
 {% load crispy_forms_tags %}
-
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}?version=1" type="text/css">
+{% endblock %}
 
 {% block content %}
 
-    <div class="container">
-        <div class="row">
+        <div class="row profile-row">
 
             <div class="col-md-5 text-center myMainInfo">
-                <div class="media">
-                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+                <div>
+                    <div class="image-cropper text-center">
+                        <img class="rounded-circle account-img profile-pic" src="{{ user.profile.image.url }}">
+                    </div>
                     <div class="media-body">
                         <h2 class="account-heading">{{ user.username }}</h2>
-                        <p class="text-secondary">{{ user.email }}</p>
+                        <p class="text-secondary" id="email">{{ user.email }}</p>
                     </div>
+
                 </div>
             </div>
 
             <div class="col-md-7 myDetailedInfo">
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        <legend class="border-bottom mb-4"><h1>Profile Info</h1></legend>
-                        {{ u_form|crispy }}
-                        {{ p_form|crispy }}
-                    </fieldset>
-                    <div class="form-group">
-                        <button class="btn btn-outline-info" type="submit">Update</button>
+                <ul class="nav nav-pills mb-3 d-flex justify-content-center mt-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#content" role="tab" aria-controls="pills-home" aria-selected="true">Info</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Gallery</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="content" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <h1>Profile Info</h1>
+                                {{ u_form|crispy }}
+                                {{ p_form|crispy }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit">Update</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <h1>Gallery</h1>
+                        <div class="row gallery-cont">
+                            {% for post in posts %}
+                            <div class="col-md-6">
+                                {% if post.post_image %}<a href="{{post.post_image.url}}" class="venobox" data-gall="myGallery"><img src="{{post.post_image.url}}" alt=""></a>
+                                            {% elif post.video %}<a href="{{post.video.url}}" ><video src="{{post.video.url}}" type="video/mp4" controls></video></a>
+                                            {% else %}<a href="{% static 'images/default.jpg' %}" class="venobox" data-gall="myGallery"><img src="{% static 'images/default.jpg' %}" alt=""></a>
+                                            {% endif %}
+                                            <h2 class="view"><a><div class="post-title">{{post.title}}</div></a><a href="#" id="details">{{post.user}}</a></h2>
+                            </div>
+                            
+                            {% endfor %}
+                        </div>
+                    </div>
+                  </div>
+                
             </div>
 
         </div>
-        <div class="content-section">
-    
-        </div>
-    </div>
+        <script>
+            var container = $('.image-cropper'),
+    image = container.find('img');
 
+container.width(image.height());
+$('.view').on('click', function(){
+    alert('Hello');
+    console.log('Heelo')
+});
+        </script>
 {% endblock content %}
